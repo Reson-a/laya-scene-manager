@@ -8,10 +8,12 @@ layabox 实现的场景管理类（ts版本）
 
   ```
     class SCENES {
-        // login view
+        /* login view */
         static LOGIN_VIEW: Scene = {
-            resArr: [{ url: "res/atlas/loginview.atlas", type: Laya.Loader.ATLAS }], // altas and other resources
-            view: LoginView // custom view extends laya.ui.View
+            /* altas and other resources */
+            resArr: [{ url: "res/atlas/loginview.atlas", type: Laya.Loader.ATLAS }], 
+            /* custom view extends laya.ui.View */
+            view: LoginView 
         };
     }
 
