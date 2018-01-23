@@ -2,6 +2,7 @@ interface Res {
     url: string
     type: string
 }
+
 interface Scene {
     resArr: Res[]
     view: any// typeof View
@@ -15,8 +16,10 @@ class SceneManager {
             SceneManager.instance = new SceneManager();
         return SceneManager.instance;
     };
+    
     constructor() {
     }
+    
     // 加载场景 支持直接传递场景参数
     public loadScene(scene: Scene, isAdditive: boolean = false, ...args: any[]): void {
         let loadScene = () => {
@@ -35,16 +38,19 @@ class SceneManager {
             Laya.loader.load(scene.resArr, Laya.Handler.create(this, loadScene, null, false));
         } else loadScene();
     }
+    
     // 移除当前全部场景
     private clearScenes(): void {
         this.scenesStack.forEach(item => this.destroyScene(item));
         this.scenesStack = [];
     }
+
     // 移除指定index的场景
     public removeSceneByIndex(index: number): void {
         let scenes = this.scenesStack.splice(index, 1);
         if (scenes.length) this.destroyScene(scenes[0]);
     }
+
     // 移除指定类型的场景
     public removeSceneByType(scene: Scene): void {
         this.scenesStack = this.scenesStack.filter(item => {
